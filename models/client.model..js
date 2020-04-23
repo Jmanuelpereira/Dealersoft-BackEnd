@@ -6,6 +6,8 @@ const clientSchema = new Schema(
   {
     firstName:String,
     lastName:String,
+    email:String,
+    
     
 
 
