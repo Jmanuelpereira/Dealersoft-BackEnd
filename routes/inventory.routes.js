@@ -4,12 +4,12 @@ const vehicleModel = require('../models/vehicle.model')
 
 /* GET home page */
 router.get('/inventory', (req, res, next) => {
-  
+
+
 
   vehicleModel.find()
-              .then(allData => {
-               res.render('back-views/inventory-views/all-inventory'), {data:allData};
-              })
+              .sort({ date: -1 })
+              .then(allData => res.json(allData))
               .catch(err => next(err))
 
 
