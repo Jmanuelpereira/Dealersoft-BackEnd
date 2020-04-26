@@ -3,7 +3,7 @@ const router  = express.Router();
 const vehicleModel = require('../models/vehicle.model')
 
 /* GET home page */
-router.get('/inventory', (req, res, next) => {
+router.get('/all-inventory', (req, res, next) => {
 
 
 

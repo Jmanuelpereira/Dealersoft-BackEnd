@@ -9,4 +9,10 @@ router.get("/login", (req, res, next) => {
   res.json({ message: 'login rendered.' })
 });
 
+router.get("/signup", (req, res, next) => {
+  res.json({ message: 'signup rendered yesss.' })
+});
+
+
+
 module.exports = router;

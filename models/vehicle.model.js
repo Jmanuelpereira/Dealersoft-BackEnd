@@ -9,8 +9,6 @@ const vehicleSchema = new Schema(
     make: String,
     plate: Number,
     
-
-
   },
   {
     timestamps: true
