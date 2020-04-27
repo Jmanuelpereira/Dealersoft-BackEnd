@@ -11,7 +11,12 @@ const path         = require('path');
 
 
 mongoose
-  .connect('mongodb://localhost/dealersoft', {useNewUrlParser: true})
+  .connect('mongodb://localhost/dealersoft', {    
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
