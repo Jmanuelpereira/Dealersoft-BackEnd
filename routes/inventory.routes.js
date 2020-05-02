@@ -23,11 +23,18 @@ router.get('/search:carId', (req, res, next) => {
 
 
   vehicleModel.findOne({id_: req.params.carId})
+              
               .sort({ date: -1 })
-              .then(allData => res.json(allData))
+              .then(allData => {
+                
+                res.json({ message: "Este es el id del carro "})
+
+                
+              
+              })
               .catch(err => next(err))
 
-              res.json({ message: 'inventory.' })
+      
 
 });
 
