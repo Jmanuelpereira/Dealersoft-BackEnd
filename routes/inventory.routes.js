@@ -2,10 +2,8 @@ const express = require('express');
 const router  = express.Router();
 const vehicleModel = require('../models/vehicle.model')
 
+//getting al inventory
 router.get('/all', (req, res, next) => {
-
-
-
   vehicleModel.find()
               .sort({ date: -1 })
               .then(allData => res.json(allData))
@@ -13,11 +11,10 @@ router.get('/all', (req, res, next) => {
 
               res.json({ message: 'inventory.' })
 
-          
-
-
 });
 
+
+//getting one vehicle
 router.get('/search:carId', (req, res, next) => {
 
 
@@ -28,9 +25,7 @@ router.get('/search:carId', (req, res, next) => {
               .then(allData => {
                 
                 res.json({ message: "Este es el id del carro "})
-
-                
-              
+         
               })
               .catch(err => next(err))
 
