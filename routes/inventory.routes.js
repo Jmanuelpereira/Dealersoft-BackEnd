@@ -9,10 +9,20 @@ router.get('/all', (req, res, next) => {
               .then(allData => res.json(allData))
               .catch(err => next(err))
 
-              res.json({ message: 'inventory.' })
+              res.status(200).json(allData)
 
 });
 
+//agregar carros
+
+router.get('/add', (req, res, next) => {
+  vehicleModel.create(req.body)
+  .then(vehicleInfo => res.status(200).json({ car: vehicleInfo }))
+  .catch(err => next(err));
+
+
+});
+ 
 
 //getting one vehicle
 router.get('/search:carId', (req, res, next) => {
@@ -23,13 +33,9 @@ router.get('/search:carId', (req, res, next) => {
               
               .sort({ date: -1 })
               .then(allData => {
-                
-                res.json({ message: "Este es el id del carro "})
-         
+                res.status(200).json({ message: "Este es el id del carro ", id: req.params.carId})            
               })
-              .catch(err => next(err))
-
-      
+              .catch(err => next(err))    
 
 });
 
