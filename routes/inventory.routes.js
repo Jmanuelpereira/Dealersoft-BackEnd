@@ -15,9 +15,9 @@ router.get('/all', (req, res, next) => {
 
 //agregar carros
 
-router.get('/add', (req, res, next) => {
+router.post('/add', (req, res, next) => {
   vehicleModel.create(req.body)
-  .then(vehicleInfo => res.status(200).json({ car: vehicleInfo }))
+  .then(vehicleInfo => res.status(200).json({ car: vehicleInfo, message: "Received"}))
   .catch(err => next(err));
 
 
