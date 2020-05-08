@@ -8,6 +8,7 @@ const vehicleSchema = new Schema(
     year: String,
     make: String,
     plate: Number,
+    buyer: { type: Schema.Types.ObjectId, ref: 'Buyer' },
     
   },
   {
