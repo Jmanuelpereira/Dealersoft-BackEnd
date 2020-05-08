@@ -15,18 +15,16 @@ router.get('/all', (req, res, next) => {
 
 //agregar carros
 
-
 router.post('/add-vehicle', (req, res, next) => {
   const { model, year, make, plate } = req.body
-  vehicleModel.create(req.body)
+  const newCar = {model, year, make, plate}
+  vehicleModel.create(newCar)
   .then(vehicleInfo => res.status(200).json({carInfo:vehicleInfo, message: "Vehicle Added"}))
   .catch(err => next(err));
-
 
 });
 
 //update car
-
 
 router.post('/:id/update', (req, res, next) => {
   const { model, year, make, plate } = req.body;
@@ -35,25 +33,25 @@ router.post('/:id/update', (req, res, next) => {
   .then(updatedVehicle => res.status(200).json({carInfo:updatedVehicle, status: "Vehicle updated"}))
   .catch(err => next(err));
 
+});
+
+//delete car
+
+router.delete('/:id/delete', (req, res, next) => {
+
+  vehicleModel.findByIdAndRemove(req.params.id)
+  .then(res.status(200).json({message: "Vehicle deleted"}))
+  .catch(err => next(err));
 
 });
  
-
 //getting one vehicle
-router.post('/search:carId', (req, res, next) => {
+router.get('/:id/search', (req, res, next) => {
 
-
-
-  vehicleModel.findOne({_id:req.params.carId})
-              
-              .sort({ date: -1 })
-              .then(allData => {
-                res.status(200).json({ message: "Este es el id del carro ", id: req.params.carId})            
-              })
-              .catch(err => next(err))    
+  vehicleModel.findById(req.params.id)       
+              .then(oneCar => res.status(200).json(oneCar))        
+              .catch(err => next(err))
 
 });
-
-
 
 module.exports = router;

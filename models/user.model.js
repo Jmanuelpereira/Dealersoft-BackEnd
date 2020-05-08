@@ -29,21 +29,7 @@ const userSchema = new Schema(
       password: {
           type: String
       },
-
-      confirmationCode: {
-          type: String
-      },
-     
-      banned: {
-          type: Boolean
-      },
-    
-      role: {
-          type: String,
-          enum: ["RRHH", "Sales", "Admin"],
-          default: "Sales"
-      },
-    
+      
   },
   { timestamps: true }
 );

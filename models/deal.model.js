@@ -9,12 +9,12 @@ const dealSchema = new Schema(
 
     vehicle: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Deals'
+      ref: 'Car'
     }],
 
-    prospect: [{
+    Buyer: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Deals'
+      ref: 'Buyer'
     }]
 
 
