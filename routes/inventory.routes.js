@@ -15,12 +15,21 @@ router.get('/all', (req, res, next) => {
 
 //agregar carros
 
-router.post('/add-vehicle', (req, res, next) => {
-  const { model, year, make, plate } = req.body
-  const newCar = {model, year, make, plate}
-  vehicleModel.create(newCar)
+router.post('/add-vehicle', async (req, res) => {
+
+  const newCar = await new vehicleModel ({
+    model: req.body.model,
+    year: req.body.year,
+    make: req.body.make,
+    plate: req.body.plate,
+    model: req.body.title,
+
+  });
+
+  newCar.save()
   .then(vehicleInfo => res.status(200).json({carInfo:vehicleInfo, message: "Vehicle Added"}))
   .catch(err => next(err));
+  
 
 });
 
