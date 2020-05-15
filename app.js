@@ -9,6 +9,13 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+//passport
+
+const session = require('express-session');
+const bcrypt = require('bcrypt');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
 
 mongoose
   .connect('mongodb://localhost/dealersoft', {    
@@ -35,6 +42,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//passport middleware
+app.use(
+  session({
+    secret: 'our-passport-local-strategy-app',
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -59,7 +79,7 @@ app.locals.title = 'DealerSoft - DMS';
 
 app.use('/', require('./routes/index'));
 app.use('/inventory', require('./routes/inventory.routes'));
-app.use('/auth', require('./routes/auth'));
+app.use('/auth', require('./routes/user.routes'));
 
 
 
